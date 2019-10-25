@@ -21,7 +21,7 @@ class DepthDataset(torch.utils.data.Dataset):
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ])
         depth_trans = transforms.Compose([
-            transforms.Resize((62, 78)),
+            transforms.Resize((128, 160)),
             transforms.ToTensor(),
             #transforms.Normalize((0.5,), (0.5,))
         ])

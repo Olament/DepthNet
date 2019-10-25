@@ -65,10 +65,3 @@ class DepthNet(nn.Module):
         out = self.conv2(out)
         out = self.relu(out)
         return out
-
-
-model = DepthNet().to(device)
-input = torch.rand(32, 3, 240, 320)
-out = model(input.to(device))
-
-print(out.size())

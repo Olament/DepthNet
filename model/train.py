@@ -1,6 +1,6 @@
 import torch
 
-from model import model, losses, data
+from model import depthnet, losses, data
 
 # hyperparameter
 batch_size = 32
@@ -18,7 +18,7 @@ loader = torch.utils.data.DataLoader(dataset=dataset,
                                      shuffle=False)
 
 # load model
-model = model.DepthNet().to(device)
+model = depthnet.DepthNet().to(device)
 
 # Loss and optimizer
 criterion = losses.RMSLoss()

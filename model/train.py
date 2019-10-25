@@ -3,6 +3,7 @@ import torch.nn as nn
 
 import model
 import data
+import losses
 
 # hyperparameter
 batch_size = 32
@@ -22,7 +23,7 @@ loader = torch.utils.data.DataLoader(dataset=dataset,
 model = model.DepthNet().to(device)
 
 # Loss and optimizer
-criterion = nn.CrossEntropyLoss()
+criterion = losses.RMSLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # train
@@ -40,6 +41,6 @@ for i, (image, depth) in enumerate(loader):
     loss.backward()
     optimizer.step()
 
-    if (i + 1) % 100 == 0:
+    if (i + 1) % 10 == 0:
         print("Step [{}/{}] Loss: {:.4f}"
-              .format(total_step, loss.item()))
+              .format(i, total_step, loss.item()))

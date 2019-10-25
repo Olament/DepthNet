@@ -14,7 +14,7 @@ class DepthDataset(torch.utils.data.Dataset):
     def __getitem__(self, index):
         # load image
         image = Image.open(os.path.join(self.path, self.lst[index]))
-        depth = resize(io.imread(os.path.join(self.path, self.lst[index]).replace("r-", "d-")), (78, 62))
+        depth = resize(io.imread(os.path.join(self.path, self.lst[index]).replace("r-", "d-")), (62, 78))
 
         # transformation
         image_trans = transforms.Compose([
@@ -27,7 +27,7 @@ class DepthDataset(torch.utils.data.Dataset):
         image = image_trans(image)
         depth = depth_trans(depth)
 
-        return image, depth
+        return image, depth.float()
 
     def __len__(self):
         return len(self.lst)

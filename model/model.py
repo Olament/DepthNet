@@ -52,8 +52,9 @@ class DepthNet(nn.Module):
         # Add new upsampling layer
         self.up1 = nn.Sequential(UpSamplingBlock(1024, 512),
                                  UpSamplingBlock(512, 256),
-                                 UpSamplingBlock(256, 128))
-        self.conv2 = nn.Conv2d(128, 1, kernel_size=3, stride=1, padding=0)
+                                 UpSamplingBlock(256, 128),
+                                 UpSamplingBlock(128, 64))
+        self.conv2 = conv3x3(64, 1)
         self.relu = nn.ReLU(inplace=True)
 
     def forward(self, inputs):
@@ -66,3 +67,8 @@ class DepthNet(nn.Module):
         return out
 
 
+model = DepthNet().to(device)
+input = torch.rand(32, 3, 240, 320)
+out = model(input.to(device))
+
+print(out.size())

@@ -1,5 +1,5 @@
 # DepthNet
-Monocular depth estimation with CNN
+Monocular depth estimation with ResNet-50
 
 ## Data Sources
 I collect most of the depth for this project using [Depth Dector](https://github.com/Olament/DepthDetection), an iOS Application i created to obtain depth information via iDevices's TrueDepth camera.

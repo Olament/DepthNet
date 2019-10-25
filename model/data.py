@@ -21,14 +21,18 @@ class DepthDataset(torch.utils.data.Dataset):
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
         ])
         depth_trans = transforms.Compose([
-            transforms.Resize((128, 160)),
+            transforms.Resize((64, 80)),
             transforms.ToTensor(),
-            #transforms.Normalize((0.5,), (0.5,))
+            transforms.Lambda(lambda x: x.float()),
+            transforms.Lambda(lambda x:  x / 65535.0)
         ])
         image = image_trans(image)
         depth = depth_trans(depth)
 
-        return image, depth.float()
+        return image, depth
 
     def __len__(self):
         return len(self.lst)
+
+
+

@@ -1,5 +1,5 @@
 # DepthNet
-Monocular depth estimation with CNN
+Monocular depth estimation with ResNet-50
 
 ## Data Sources
 I collect most of the depth for this project using [Depth Dector](https://github.com/Olament/DepthDetection), an iOS Application i created to obtain depth information via iDevices's TrueDepth camera.
@@ -9,7 +9,7 @@ I collect most of the depth for this project using [Depth Dector](https://github
 ![](https://github.com/Olament/DepthNet/blob/master/imgs/architecture.png)
 *Architecuture figure from Iron Laina et al. paper*
 
-The images are first feed into a ResNet-50 network and then go through four upsampling blocks. Different from what described in the figure, our model has an input size of  320x240x3 (WxHxC) and output size of 78x62x1 (WxHxC).
+The images are first feed into a ResNet-50 network and then go through four upsampling blocks. Different from what described in the figure, our model has an input size of  320x240x3 (WxHxC) and output size of 160x128x1 (WxHxC).
 
 ## Citation
 [Deep Optics for Monocular Depth Estimation and 3D Object Detection](https://arxiv.org/abs/1904.08601) by Julie Chang and Gordon Wetzstein

@@ -39,15 +39,15 @@ def update_lr(opt, lr):
 # validation
 def validate(model, test_loader):
     model.eval()
-    with torch.no_grad:
+    with torch.no_grad():
         loss = 0.0
         for t_image, t_depth in test_loader:
             t_image = t_image.to(device)
             t_depth = t_depth.to(device)
             t_outputs = model(t_image)
             curr_loss = criterion(t_depth, t_outputs)
-            loss += curr_loss
-        print("Validation Loss: {.4f}"
+            loss += curr_loss.item()
+        print("Validation Loss: {:.4f}"
               .format(loss/(len(test_loader) * batch_size)))
     model.train()
 

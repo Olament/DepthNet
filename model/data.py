@@ -31,7 +31,8 @@ class DepthDataset(torch.utils.data.Dataset):
             transforms.Resize((64, 80)),
             transforms.ToTensor(),
             transforms.Lambda(lambda x: x.float()),
-            #transforms.Lambda(lambda x:  torch.div(x, 65535.0))
+            transforms.Lambda(lambda x: torch.div(x, 65535.0)),
+            #transforms.Normalize((0.5, ), (0.5, ))
         ])
         image = image_trans(comm_trans(image))
         depth = depth_trans(comm_trans(depth))

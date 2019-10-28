@@ -19,7 +19,7 @@ class BerHuLoss(nn.Module):
     def forward(self, input, target, mask=None):
         x = input - target
         abs_x = torch.abs(x)
-        c = torch.max(abs_x).data[0] / 5
+        c = torch.max(abs_x).item() / 5
         leq = (abs_x <= c).float()
         l2_losses = (x ** 2 + c ** 2) / (2 * c)
         losses = leq * abs_x + (1 - leq) * l2_losses
